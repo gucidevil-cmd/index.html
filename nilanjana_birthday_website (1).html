@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday, Nilanjana! 🎂</title>
+<style>
+  :root { --pink:#ff4f91; --deep:#8d245d; --cream:#fff8f5; }
+  * { box-sizing:border-box; }
+  body {
+    margin:0; min-height:100vh; overflow-x:hidden; display:grid; place-items:center;
+    font-family: "Trebuchet MS", Arial, sans-serif; color:#64264b;
+    background: radial-gradient(circle at top left,#ffe0ec 0,transparent 38%),
+                radial-gradient(circle at bottom right,#e8dfff 0,transparent 40%),
+                linear-gradient(135deg,#fff7f2,#ffeaf3 55%,#f5edff);
+  }
+  .sparkles { position:fixed; inset:0; pointer-events:none; overflow:hidden; }
+  .sparkle { position:absolute; color:#ff77a8; opacity:.55; animation:float 8s ease-in-out infinite; }
+  @keyframes float { 0%,100%{transform:translateY(15px) rotate(0deg)} 50%{transform:translateY(-28px) rotate(18deg)} }
+  .card {
+    position:relative; width:min(92vw,650px); margin:30px 0; padding:clamp(28px,6vw,58px) clamp(22px,6vw,56px);
+    text-align:center; border:1px solid rgba(255,255,255,.9); border-radius:30px;
+    background:rgba(255,255,255,.78); box-shadow:0 24px 70px rgba(146,52,101,.16);
+    backdrop-filter:blur(12px); animation:appear .9s ease both;
+  }
+  @keyframes appear { from{opacity:0;transform:translateY(18px) scale(.98)} to{opacity:1;transform:none} }
+  .eyebrow { text-transform:uppercase; letter-spacing:4px; font-size:.76rem; font-weight:700; color:#c64d83; }
+  .cake { font-size:clamp(4rem,12vw,6rem); margin:12px 0 4px; filter:drop-shadow(0 8px 8px #ffb2ce66); }
+  h1 { margin:8px 0 12px; font-size:clamp(2.5rem,8vw,4.5rem); line-height:1.02; letter-spacing:-2px; color:var(--deep); }
+  h1 span { display:block; color:var(--pink); }
+  .subtitle { font-size:clamp(1rem,2.8vw,1.18rem); line-height:1.8; max-width:470px; margin:0 auto; color:#80516c; }
+  .divider { width:74px; height:4px; border-radius:5px; background:linear-gradient(90deg,#ff8ab7,#c8a0ff); margin:25px auto; }
+  .wish { font-size:1.05rem; line-height:1.9; margin:0 auto 26px; max-width:470px; }
+  button {
+    border:0; border-radius:999px; padding:15px 26px; font-size:1rem; font-weight:700;
+    color:white; cursor:pointer; background:linear-gradient(100deg,#ff5797,#c16ce7);
+    box-shadow:0 9px 22px #dc69a844; transition:transform .2s, box-shadow .2s;
+  }
+  button:hover { transform:translateY(-3px); box-shadow:0 13px 28px #dc69a866; }
+  button:focus-visible { outline:3px solid #8d245d; outline-offset:4px; }
+  .surprise { display:none; margin:24px auto 0; padding:20px; border-radius:18px; background:#fff0f7; line-height:1.8; animation:appear .5s ease both; }
+  .surprise.show { display:block; }
+  .footer { margin-top:28px; font-size:.82rem; color:#b06a90; }
+  .confetti { position:fixed; top:-20px; z-index:5; pointer-events:none; animation:fall linear forwards; }
+  @keyframes fall { to { transform:translateY(110vh) rotate(720deg); opacity:.15; } }
+  @media (prefers-reduced-motion: reduce) { *,*::before,*::after { animation-duration:.01ms!important; animation-iteration-count:1!important; scroll-behavior:auto!important; } }
+</style>
+</head>
+<body>
+<div class="sparkles" aria-hidden="true">
+  <span class="sparkle" style="left:8%;top:18%;font-size:28px;animation-delay:-2s">✦</span>
+  <span class="sparkle" style="left:82%;top:12%;font-size:34px;animation-delay:-5s">♡</span>
+  <span class="sparkle" style="left:12%;top:76%;font-size:24px;animation-delay:-3s">✧</span>
+  <span class="sparkle" style="left:88%;top:72%;font-size:30px;animation-delay:-1s">✦</span>
+  <span class="sparkle" style="left:48%;top:7%;font-size:20px;animation-delay:-4s">♡</span>
+</div>
+<main class="card">
+  <div class="eyebrow">A little celebration for someone special</div>
+  <div class="cake" aria-hidden="true">🎂</div>
+  <h1>Happy Birthday,<span>Nilanjana!</span></h1>
+  <p class="subtitle">Today is all about you — your smile, your dreams, and all the wonderful things that make you special. 💗</p>
+  <div class="divider"></div>
+  <p class="wish">May your new year of life be filled with beautiful surprises, genuine happiness, endless love, and memories that make you smile for years to come.</p>
+  <button id="surpriseBtn" type="button">Open your birthday surprise ✨</button>
+  <div class="surprise" id="surprise" role="status">
+    🌷 <strong>Dear Nilanjana,</strong><br>
+    Never stop shining, dreaming, and being wonderfully you. May every wish in your heart find its way to you.<br>
+    <span style="font-size:1.5rem">💖 🎁 🌟</span><br>
+    <strong>Have the most magical birthday!</strong>
+  </div>
+  <div class="footer">Made with ♡ just for Nilanjana</div>
+</main>
+<script>
+  const button = document.getElementById('surpriseBtn');
+  const surprise = document.getElementById('surprise');
+  button.addEventListener('click', () => {
+    surprise.classList.add('show');
+    button.textContent = 'Make a wish, Nilanjana! 💖';
+    for (let i = 0; i < 65; i++) {
+      const bit = document.createElement('span');
+      bit.className = 'confetti';
+      bit.textContent = ['💖','✨','🌸','🎉','💜','⭐'][Math.floor(Math.random()*6)];
+      bit.style.left = Math.random()*100 + 'vw';
+      bit.style.fontSize = (12 + Math.random()*18) + 'px';
+      bit.style.animationDuration = (2.5 + Math.random()*3.5) + 's';
+      bit.style.animationDelay = (Math.random()*.8) + 's';
+      document.body.appendChild(bit);
+      setTimeout(() => bit.remove(), 7000);
+    }
+  });
+</script>
+</body>
+</html>
